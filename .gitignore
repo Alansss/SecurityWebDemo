@@ -21,6 +21,7 @@
 
 *.properties
 
+target
 .idea
 .mvn
 *.iml
