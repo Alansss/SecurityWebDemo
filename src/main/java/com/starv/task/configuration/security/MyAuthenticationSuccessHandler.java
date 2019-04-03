@@ -3,7 +3,6 @@ package com.starv.task.configuration.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +33,6 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
             map.put("msg", "登录成功");
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(objectMapper.writeValueAsString(map));
-            
             
             //如果是要跳转到某个页面的，比如我们的那个whoim的则
             //new DefaultRedirectStrategy().sendRedirect(request, response, "/log");

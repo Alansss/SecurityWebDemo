@@ -24,7 +24,7 @@ public class WebLogAspect {
     /**
      * 统一切点,对com.kzj.kzj_rabbitmq.controller及其子包中所有的类的所有方法切面
      */
-    @Pointcut("execution(public * com.starv.task.scheduleTask.controller..*.*(..))")
+    @Pointcut("execution(public * com.starv.task.controller..*.*(..))")
     public void pointcut() {
     }
 
