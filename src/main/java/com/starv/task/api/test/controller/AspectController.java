@@ -1,4 +1,4 @@
-package com.starv.task.api.controller;
+package com.starv.task.api.test.controller;
 
 import com.starv.task.configuration.annotation.JsonArg;
 import lombok.extern.slf4j.Slf4j;
