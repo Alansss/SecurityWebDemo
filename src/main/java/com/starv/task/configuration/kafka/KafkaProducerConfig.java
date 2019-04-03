@@ -1,4 +1,4 @@
-package com.starv.task.configuration;
+package com.starv.task.configuration.kafka;
 
 import java.util.HashMap;
 import java.util.Map;

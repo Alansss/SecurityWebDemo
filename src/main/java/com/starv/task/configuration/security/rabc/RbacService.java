@@ -1,4 +1,4 @@
-package com.starv.task.configuration.security;
+package com.starv.task.configuration.security.rabc;
 
 import org.springframework.security.core.Authentication;
 

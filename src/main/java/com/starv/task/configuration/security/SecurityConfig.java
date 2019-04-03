@@ -1,6 +1,8 @@
 package com.starv.task.configuration.security;
 
-import com.starv.task.service.MyUserDetailsService;
+import com.starv.task.api.account.service.UserDetailsServiceImpl;
+import com.starv.task.configuration.security.handler.MyAuthenticationFailHander;
+import com.starv.task.configuration.security.handler.MyAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,13 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //是在application.properites
     private final DataSource dataSource;
     //是在application.properites
-    private final MyUserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public SecurityConfig(MyAuthenticationProvider provider,
                           MyAuthenticationSuccessHandler myAuthenticationSuccessHandler,
                           MyAuthenticationFailHander myAuthenticationFailHander, DataSource dataSource,
-                          MyUserDetailsService userDetailsService) {
+                          UserDetailsServiceImpl userDetailsService) {
         this.provider = provider;
         this.myAuthenticationSuccessHandler = myAuthenticationSuccessHandler;
         this.myAuthenticationFailHander = myAuthenticationFailHander;

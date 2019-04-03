@@ -1,7 +1,7 @@
 package com.starv.task.configuration.security;
 
 import com.starv.task.entity.UserInfo;
-import com.starv.task.service.MyUserDetailsService;
+import com.starv.task.api.account.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,7 +19,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
        * 注入我们自己定义的用户信息获取对象
        */
       @Autowired
-      private MyUserDetailsService userDetailService;
+      private UserDetailsServiceImpl userDetailService;
 
       @Override
       public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -44,7 +44,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
             // //这里还可以加一些其他信息的判断，比如用户账号已停用等判断，这里为了方便我接下去的判断，我就不用加密了。
             //
             //
-            if (!"123456".equals(userInfo.getPassword())) {
+            if (!password.equals(userInfo.getPassword())) {
                   throw new BadCredentialsException("密码不正确");
             }
             Collection<? extends GrantedAuthority> authorities = userInfo.getAuthorities();

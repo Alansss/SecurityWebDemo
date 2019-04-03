@@ -1,7 +1,7 @@
 package com.starv.task.configuration;
 
 import com.starv.task.configuration.resolver.JSONResolver;
-import com.starv.task.configuration.security.SecurityInterceptor;
+import com.starv.task.configuration.security.interceptor.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

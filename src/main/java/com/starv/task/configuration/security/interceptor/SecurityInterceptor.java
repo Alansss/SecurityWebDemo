@@ -1,4 +1,4 @@
-package com.starv.task.configuration.security;
+package com.starv.task.configuration.security.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

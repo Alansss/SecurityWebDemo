@@ -1,24 +1,47 @@
 package com.starv.task.entity;
 
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
+@Entity(name = "user")
+@NoArgsConstructor
 public class UserInfo implements Serializable, UserDetails {
       /**
        *
        */
       private static final long serialVersionUID = 1L;
+
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Integer id;
+
+      @Column
       private String username;
+
+      @Column
       private String password;
+
+      @Transient
       private String role;
+
+      @Transient
       private boolean accountNonExpired;
+
+      @Transient
       private boolean accountNonLocked;
+
+      @Transient
       private boolean credentialsNonExpired;
+
+      @Transient
       private boolean enabled;
+
       public UserInfo(String username, String password, String role, boolean accountNonExpired, boolean accountNonLocked,
                   boolean credentialsNonExpired, boolean enabled) {
             // TODO Auto-generated constructor stub
