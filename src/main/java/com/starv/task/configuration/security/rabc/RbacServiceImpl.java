@@ -1,6 +1,5 @@
 package com.starv.task.configuration.security.rabc;
 
-import com.starv.task.configuration.security.rabc.RbacService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,7 @@ public class RbacServiceImpl implements RbacService {
             if (principal instanceof UserDetails) { //首先判断先当前用户是否是我们UserDetails对象。
                   String userName = ((UserDetails) principal).getUsername();
                   Set<String> urls = new HashSet<>(); // 数据库读取 //读取用户所拥有权限的所有URL
-                  
+                  urls.add("/*.html");
                   urls.add("/log");
                   urls.add("/log2");
                   // 注意这里不能用equal来判断，因为有些URL是有参数的，所以要用AntPathMatcher来比较
