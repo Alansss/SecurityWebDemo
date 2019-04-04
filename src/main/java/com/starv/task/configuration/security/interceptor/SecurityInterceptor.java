@@ -1,5 +1,6 @@
 package com.starv.task.configuration.security.interceptor;
 
+import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Set;
 
 @Component
 public class SecurityInterceptor implements HandlerInterceptor {
@@ -38,8 +40,10 @@ public class SecurityInterceptor implements HandlerInterceptor {
         }
 */
 
-        logger.info("to:{}", requestURI);
-        logger.info("ip:{}", getIpAddress(httpServletRequest));
+        if (staticResFilter(requestURI)) {
+            logger.info("to:{}", requestURI);
+            logger.info("ip:{}", getIpAddress(httpServletRequest));
+        }
 
         return true;
     }
@@ -52,6 +56,19 @@ public class SecurityInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
+    }
+
+    private boolean staticResFilter(String url) {
+        Set<String> filterSet = Sets.newHashSet("/css", "/images", "/js");
+        for (String str : filterSet) {
+            if (url.startsWith(str)) {
+                return false;
+            }
+        }
+        if (url.endsWith(".html") || url.endsWith(".htm")) {
+            return false;
+        }
+        return true;
     }
 
     /**
