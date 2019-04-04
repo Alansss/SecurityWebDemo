@@ -19,7 +19,7 @@
 *.tar.gz
 *.rar
 
-*.properties
+application-prod.properties
 
 target
 .idea

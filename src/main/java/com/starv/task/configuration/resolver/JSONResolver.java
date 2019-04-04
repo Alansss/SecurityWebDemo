@@ -2,14 +2,14 @@ package com.starv.task.configuration.resolver;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.CharStreams;
 import com.starv.task.configuration.annotation.JsonArg;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -17,6 +17,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 @Component
 public class JSONResolver implements HandlerMethodArgumentResolver {
@@ -82,7 +84,7 @@ public class JSONResolver implements HandlerMethodArgumentResolver {
         //这里用了一下缓存
         if (jsonBody == null) {
             try {
-                jsonBody = IOUtils.toString(servletRequest.getInputStream(), "UTF-8");
+                jsonBody = CharStreams.toString(new InputStreamReader(servletRequest.getInputStream(), StandardCharsets.UTF_8));
                 webRequest.setAttribute(JSON_BODY_ATTRIBUTE, jsonBody, NativeWebRequest.SCOPE_REQUEST);
             } catch (IOException e) {
                 throw new RuntimeException(e);

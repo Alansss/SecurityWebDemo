@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 典型的日志pattern -->
+        <encoder>
+            <pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+<!--
+    <appender name="REPORTTASK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/opt/tomcat/logs/reportTask.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/opt/tomcat/logs/reportTask-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.starv.api" level="DEBUG"/>
+    <logger name="jdbc.sqltiming" level="error"/>
+    <logger name="jdbc.resultset" level="error"/>
+    <logger name="jdbc.audit" level="error"/>
+    <logger name="org.apache.ibatis" level="DEBUG"/>
+
+    <logger name="com.starv.job.service.UserDataImport" level="debug" additivity="false">
+        <appender-ref ref="REPORTTASK"/>
+    </logger>-->
+</configuration>
